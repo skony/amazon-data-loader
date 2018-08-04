@@ -21,7 +21,7 @@ public class JsonReader {
         dataLoader.beginTransaction();
         while (parser.nextToken() != null) {
             JsonNode node = objectMapper.readTree(parser);
-            dataLoader.loadToDb(node);
+            dataLoader.loadEntitiesToDb(node);
             if ((i++ % 1) == 1000) {
                 dataLoader.endTransaction();
                 dataLoader.beginTransaction();

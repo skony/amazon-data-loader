@@ -10,5 +10,4 @@ public abstract class AbstractReviewDataLoader implements DataLoader {
     private static final String OVERALL = "overall";
     private static final String SUMMARY = "summary";
     private static final String REVIEWER_TIME = "unixReviewTime";
-    
 }

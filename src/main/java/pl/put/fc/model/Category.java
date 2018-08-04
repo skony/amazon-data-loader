@@ -11,19 +11,37 @@ import javax.persistence.Table;
 public class Category {
     
     @Id
-    private long id;
-    
-    private String name;
+    public String name;
     
     @ManyToOne
-    @JoinColumn(name = "parent_category_id")
-    private Category parentCategory;
+    @JoinColumn(name = "parent_category_name")
+    public Category parentCategory;
     
     public Category() {
     }
     
+    public Category(String name) {
+        this.name = name;
+    }
+    
     public Category(String name, Category parentCategory) {
         this.name = name;
+        this.parentCategory = parentCategory;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public Category getParentCategory() {
+        return parentCategory;
+    }
+    
+    public void setParentCategory(Category parentCategory) {
         this.parentCategory = parentCategory;
     }
 }

@@ -2,6 +2,7 @@ package pl.put.fc.loader.boundary;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 import pl.put.fc.datamodel.CategoryStack;
@@ -29,6 +30,8 @@ public abstract class AbstractMetaDataLoader implements DataLoader {
         metaDataRow.setPrice(node.path(PRICE).asDouble());
         metaDataRow.setImgUrl(node.path(IMG_URL).asText());
         metaDataRow.setBrand(node.path(BRAND).asText());
+        
+        metaDataRow.setCategories(getCategories(node));
         
         metaDataRow.setAlsoBought(getRelatedList(node, ALSO_BOUGHT));
         metaDataRow.setAlsoViewed(getRelatedList(node, ALSO_VIEWED));
@@ -58,7 +61,7 @@ public abstract class AbstractMetaDataLoader implements DataLoader {
     }
     
     private CategoryStack getCategoryStack(Iterator<JsonNode> categoriesIterator) {
-        List<String> categoryStackList = new ArrayList();
+        LinkedList<String> categoryStackList = new LinkedList<>();
         while (categoriesIterator.hasNext()) {
             categoryStackList.add(categoriesIterator.next().asText());
         }

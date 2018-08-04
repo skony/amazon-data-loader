@@ -1,12 +1,13 @@
 package pl.put.fc.datamodel;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class CategoryStack {
     
-    List<String> categories;
+    LinkedList<String> categories;
     
-    public CategoryStack(List<String> categories) {
+    public CategoryStack(LinkedList<String> categories) {
         this.categories = categories;
     }
     
@@ -14,7 +15,7 @@ public class CategoryStack {
         return categories;
     }
     
-    public void setCategories(List<String> categories) {
+    public void setCategories(LinkedList<String> categories) {
         this.categories = categories;
     }
 }

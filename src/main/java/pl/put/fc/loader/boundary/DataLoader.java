@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public interface DataLoader {
     
-    void loadToDb(JsonNode node);
+    void loadEntitiesToDb(JsonNode node);
     
     void finishConnection();
     

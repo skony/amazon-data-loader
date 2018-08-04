@@ -39,6 +39,15 @@ public class MetaFileFixer {
         out.close();
     }
     
+    public boolean isAlreadyFixed(String fileName) {
+        URL fileURL = getClass().getClassLoader().getResource(fileName);
+        if (fileURL != null) {
+            File file = new File(fileURL.getPath());
+            return file.exists();
+        }
+        return false;
+    }
+    
     private String fixLine(String line, String partToFix) {
         if (!line.contains(partToFix)) {
             return line;
