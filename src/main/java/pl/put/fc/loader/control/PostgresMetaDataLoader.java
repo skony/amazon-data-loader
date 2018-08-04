@@ -21,6 +21,7 @@ public class PostgresMetaDataLoader extends AbstractMetaDataLoader {
         this.session = session;
     }
     
+    @Override
     public void loadEntitiesToDb(JsonNode node) {
         MetaDataRow dataRow = getRow(node);
         Product product = new Product();
@@ -35,6 +36,17 @@ public class PostgresMetaDataLoader extends AbstractMetaDataLoader {
         product.setCategory(categories);
         
         session.persist(product);
+    }
+    
+    @Override
+    public void loadRelationsToDb(JsonNode node) {
+        MetaDataRow dataRow = getRow(node);
+        Product product = session.find(Product.class, dataRow.getProductId());
+        product.setAlsoViewed(getRelatedProducts(dataRow.getAlsoViewed()));
+        product.setAlsoBought(getRelatedProducts(dataRow.getAlsoBought()));
+        product.setBoughtTogether(getRelatedProducts(dataRow.getBoughtTogether()));
+        product.setBuyAfterViewing(getRelatedProducts(dataRow.getBuyAfterViewing()));
+        session.update(product);
     }
     
     @Override
@@ -81,5 +93,18 @@ public class PostgresMetaDataLoader extends AbstractMetaDataLoader {
         Category category = new Category(listIterator.next());
         session.merge(category);
         return category;
+    }
+    
+    private List<Product> getRelatedProducts(List<String> relatedProductsIds) {
+        List<Product> relatedProducts = new ArrayList<>();
+        relatedProductsIds.forEach(id -> getRelatedProduct(relatedProducts, id));
+        return relatedProducts;
+    }
+    
+    private void getRelatedProduct(List<Product> relatedProducts, String id) {
+        Product relatedProduct = session.find(Product.class, id);
+        if (relatedProduct != null) {
+            relatedProducts.add(relatedProduct);
+        }
     }
 }

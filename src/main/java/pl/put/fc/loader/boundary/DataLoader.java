@@ -6,6 +6,8 @@ public interface DataLoader {
     
     void loadEntitiesToDb(JsonNode node);
     
+    void loadRelationsToDb(JsonNode node);
+    
     void finishConnection();
     
     void beginTransaction();

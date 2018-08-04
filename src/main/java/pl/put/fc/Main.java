@@ -36,7 +36,7 @@ public class Main {
         if (!metaFileFixer.isAlreadyFixed(file.getFixedMetaFile())) {
             metaFileFixer.fix(file.getOriginalMetaFile());
         }
-        JsonReader jsonReader = new JsonReader();
-        jsonReader.read(file.getFixedMetaFile(), new PostgresMetaDataLoader(session));
+        JsonToDbLoader jsonReader = new JsonToDbLoader();
+        jsonReader.load(file.getFixedMetaFile(), new PostgresMetaDataLoader(session));
     }
 }
