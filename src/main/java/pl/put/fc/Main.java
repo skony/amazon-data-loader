@@ -8,10 +8,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import pl.put.fc.loader.control.PostgresMetaDataLoader;
+import pl.put.fc.loader.control.PostgresReviewDataLoader;
 
 public class Main {
     
-    private static final List<DataFile> DATA_FILES = Arrays.asList(DataFile.MUSICAL_INSTRUMENTS);
+    private static final List<DataFile> DATA_FILES = Arrays.asList(DataFile.AMAZON_INSTANT_VIDEO);
     
     public static void main(String[] args) throws JsonProcessingException, IOException {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -29,6 +30,7 @@ public class Main {
             e.printStackTrace();
         } finally {
             session.close();
+            sessionFactory.close();
         }
     }
     
@@ -38,5 +40,6 @@ public class Main {
         }
         JsonToDbLoader jsonReader = new JsonToDbLoader();
         jsonReader.load(file.getFixedMetaFile(), new PostgresMetaDataLoader(session));
+        jsonReader.load(file.getReviewFile(), new PostgresReviewDataLoader(session));
     }
 }

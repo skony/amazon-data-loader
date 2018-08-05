@@ -9,13 +9,13 @@ import javax.persistence.Table;
 public class Reviewer {
     
     @Id
-    private long id;
+    private String id;
     private String name;
     
     public Reviewer() {
     }
     
-    public Reviewer(long id, String name) {
+    public Reviewer(String id, String name) {
         this.id = id;
         this.name = name;
     }

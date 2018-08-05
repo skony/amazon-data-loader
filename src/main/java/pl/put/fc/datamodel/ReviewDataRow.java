@@ -5,18 +5,23 @@ public class ReviewDataRow {
     private String reviewerId;
     private String productId;;
     private String reviewerName;
-    private String helpful;
+    private int helpful_1;
+    private int helpful_2;
     private String reviewText;
     private double overall;
     private String summary;
     private long unixReviewTime;
     
-    public ReviewDataRow(String reviewerId, String productId, String reviewerName, String helpful, String reviewText, double overall,
+    public ReviewDataRow() {
+        
+    }
+    
+    public ReviewDataRow(String reviewerId, String productId, String reviewerName, int helpful, String reviewText, double overall,
             String summary, long unixReviewTime) {
         this.reviewerId = reviewerId;
         this.productId = productId;
         this.reviewerName = reviewerName;
-        this.helpful = helpful;
+        helpful_1 = helpful;
         this.reviewText = reviewText;
         this.overall = overall;
         this.summary = summary;
@@ -47,20 +52,28 @@ public class ReviewDataRow {
         this.reviewerName = reviewerName;
     }
     
-    public String getHelpful() {
-        return helpful;
-    }
-    
-    public void setHelpful(String helpful) {
-        this.helpful = helpful;
-    }
-    
     public String getReviewText() {
         return reviewText;
     }
     
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
+    }
+    
+    public int getHelpful_1() {
+        return helpful_1;
+    }
+    
+    public void setHelpful_1(int helpful_1) {
+        this.helpful_1 = helpful_1;
+    }
+    
+    public int getHelpful_2() {
+        return helpful_2;
+    }
+    
+    public void setHelpful_2(int helpful_2) {
+        this.helpful_2 = helpful_2;
     }
     
     public double getOverall() {

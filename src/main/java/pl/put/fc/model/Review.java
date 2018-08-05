@@ -34,11 +34,12 @@ public class Review {
     @Column(name = "voted_not_helpful")
     private int votedNotHelpful;
     
-    @Column(name = "review_text")
+    @Column(name = "review_text", length = 32767)
     private String reviewText;
     
     private double overall;
     
+    @Column(length = 1023)
     private String summary;
     
     @Column(name = "review_time")
@@ -49,13 +50,45 @@ public class Review {
     
     public Review(Reviewer reviewer, Product product, int votedHelpful, int votedNotHelpful, String reviewText, double overall,
             String summary, long reviewTime) {
-        this.reviewer = reviewer;
+        reviewer = reviewer;
         this.product = product;
         this.votedHelpful = votedHelpful;
         this.votedNotHelpful = votedNotHelpful;
         this.reviewText = reviewText;
         this.overall = overall;
         this.summary = summary;
+        this.reviewTime = reviewTime;
+    }
+    
+    public void setReviewer(Reviewer reviewer) {
+        this.reviewer = reviewer;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    
+    public void setVotedHelpful(int votedHelpful) {
+        this.votedHelpful = votedHelpful;
+    }
+    
+    public void setVotedNotHelpful(int votedNotHelpful) {
+        this.votedNotHelpful = votedNotHelpful;
+    }
+    
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
+    
+    public void setOverall(double overall) {
+        this.overall = overall;
+    }
+    
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+    
+    public void setReviewTime(long reviewTime) {
         this.reviewTime = reviewTime;
     }
 }
