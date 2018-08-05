@@ -1,4 +1,4 @@
-package pl.put.fc.model;
+package pl.put.fc.model.postgres;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

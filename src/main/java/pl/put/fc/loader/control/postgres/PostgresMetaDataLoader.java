@@ -1,4 +1,4 @@
-package pl.put.fc.loader.control;
+package pl.put.fc.loader.control.postgres;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import pl.put.fc.datamodel.CategoryStack;
 import pl.put.fc.datamodel.MetaDataRow;
 import pl.put.fc.loader.boundary.AbstractMetaDataLoader;
-import pl.put.fc.model.Category;
-import pl.put.fc.model.Product;
+import pl.put.fc.model.postgres.Category;
+import pl.put.fc.model.postgres.Product;
 
 public class PostgresMetaDataLoader extends AbstractMetaDataLoader {
     

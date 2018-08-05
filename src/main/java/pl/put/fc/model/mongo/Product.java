@@ -1,51 +1,40 @@
-package pl.put.fc.model;
+package pl.put.fc.model.mongo;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 
 /**
  * @author Piotr Skonieczny
  */
-@Entity
-@Table(name = "product")
+@Entity("product")
 public class Product {
     
     @Id
     private String id;
     
-    @Column(length = 1023)
     private String title;
     
     private double price;
     
-    @Column(length = 1023)
     private String brand;
     
     // private String description;
     
-    @ManyToMany
-    @JoinTable(name = "product_category")
+    @Reference
     private List<Category> categories;
     
-    @ManyToMany
-    @JoinTable(name = "product_also_bought")
+    @Reference
     private List<Product> alsoBought;
     
-    @ManyToMany
-    @JoinTable(name = "product_also_viewed")
+    @Reference
     private List<Product> alsoViewed;
     
-    @ManyToMany
-    @JoinTable(name = "product_bought_together")
+    @Reference
     private List<Product> boughtTogether;
     
-    @ManyToMany
-    @JoinTable(name = "product_buy_after_viewing")
+    @Reference
     private List<Product> buyAfterViewing;
     
     public Product() {

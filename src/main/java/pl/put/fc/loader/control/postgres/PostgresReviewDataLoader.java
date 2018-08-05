@@ -1,21 +1,18 @@
-package pl.put.fc.loader.control;
+package pl.put.fc.loader.control.postgres;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.fasterxml.jackson.databind.JsonNode;
 import pl.put.fc.datamodel.ReviewDataRow;
 import pl.put.fc.loader.boundary.AbstractReviewDataLoader;
-import pl.put.fc.model.Product;
-import pl.put.fc.model.Review;
-import pl.put.fc.model.Reviewer;
+import pl.put.fc.model.postgres.Product;
+import pl.put.fc.model.postgres.Review;
+import pl.put.fc.model.postgres.Reviewer;
 
 public class PostgresReviewDataLoader extends AbstractReviewDataLoader {
     
     private Session session;
     private Transaction transaction;
-    private static final Pattern VOTES_PATTERN = Pattern.compile("[(\\d+),(\\d+)]");
     
     public PostgresReviewDataLoader(Session session) {
         this.session = session;
@@ -66,15 +63,5 @@ public class PostgresReviewDataLoader extends AbstractReviewDataLoader {
     @Override
     public void endTransaction() {
         transaction.commit();
-    }
-    
-    private int getVotedHelpful(String var) {
-        Matcher matcher = VOTES_PATTERN.matcher(var);
-        return Integer.valueOf(matcher.group(0));
-    }
-    
-    private int getVotedNotHelpful(String var) {
-        Matcher matcher = VOTES_PATTERN.matcher(var);
-        return Integer.valueOf(matcher.group(1)) - Integer.valueOf(matcher.group(0));
     }
 }

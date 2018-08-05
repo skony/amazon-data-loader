@@ -1,48 +1,40 @@
-package pl.put.fc.model;
+package pl.put.fc.model.mongo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
 
 /**
  * @author Piotr Skonieczny
  */
-@Entity
-@Table(name = "review")
+@Entity("review")
 public class Review {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private ObjectId id;
     
-    @ManyToOne
-    @JoinColumn(name = "reviewer_id")
+    @Reference
     private Reviewer reviewer;
     
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @Reference
     private Product product;
     
-    @Column(name = "voted_helpful")
+    @Property("voted_helpful")
     private int votedHelpful;
     
-    @Column(name = "voted_not_helpful")
+    @Property("voted_not_helpful")
     private int votedNotHelpful;
     
-    @Column(name = "review_text", length = 32767)
+    @Property("review_text")
     private String reviewText;
     
     private double overall;
     
-    @Column(length = 1023)
     private String summary;
     
-    @Column(name = "review_time")
+    @Property("review_time")
     private long reviewTime;
     
     public Review() {

@@ -18,7 +18,7 @@ public class JsonToDbLoader {
         objectMapper.configure(JsonParser.Feature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true);
         URL fileURL = getClass().getClassLoader().getResource(fileName);
         loadEntities(dataLoader, objectMapper, fileURL);
-        // loadRelations(dataLoader, objectMapper, fileURL);
+        loadRelations(dataLoader, objectMapper, fileURL);
         System.out.println(System.currentTimeMillis() - startTime);
     }
     
