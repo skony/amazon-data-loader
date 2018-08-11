@@ -50,11 +50,6 @@ public class PostgresMetaDataLoader extends AbstractMetaDataLoader {
     }
     
     @Override
-    public void finishConnection() {
-        session.close();
-    }
-    
-    @Override
     public void beginTransaction() {
         transaction = session.beginTransaction();
     }

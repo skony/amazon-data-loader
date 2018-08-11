@@ -49,15 +49,10 @@ public class MongoReviewDataLoader extends AbstractReviewDataLoader {
     }
     
     @Override
-    public void finishConnection() {
-    }
-    
-    @Override
     public void beginTransaction() {
     }
     
     @Override
     public void endTransaction() {
     }
-    
 }

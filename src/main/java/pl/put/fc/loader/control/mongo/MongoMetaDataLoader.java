@@ -48,10 +48,6 @@ public class MongoMetaDataLoader extends AbstractMetaDataLoader {
     }
     
     @Override
-    public void finishConnection() {
-    }
-    
-    @Override
     public void beginTransaction() {
     }
     

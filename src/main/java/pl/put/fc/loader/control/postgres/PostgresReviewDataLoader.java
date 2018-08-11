@@ -51,11 +51,6 @@ public class PostgresReviewDataLoader extends AbstractReviewDataLoader {
     }
     
     @Override
-    public void finishConnection() {
-        session.close();
-    }
-    
-    @Override
     public void beginTransaction() {
         transaction = session.beginTransaction();
     }

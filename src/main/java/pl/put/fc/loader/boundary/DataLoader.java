@@ -8,8 +8,6 @@ public interface DataLoader {
     
     void loadRelationsToDb(JsonNode node);
     
-    void finishConnection();
-    
     void beginTransaction();
     
     void endTransaction();

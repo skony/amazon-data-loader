@@ -25,7 +25,7 @@ public class MongoDataLoadInvoker implements DataLoadInvoker {
     @Override
     public void invoke(DataFile dataFile) throws JsonProcessingException, IOException {
         JsonToDbLoader jsonToDbLoader = new JsonToDbLoader();
-        // jsonToDbLoader.load(dataFile.getFixedMetaFile(), new MongoMetaDataLoader(datastore));
+        jsonToDbLoader.load(dataFile.getFixedMetaFile(), new MongoMetaDataLoader(datastore));
         jsonToDbLoader.load(dataFile.getReviewFile(), new MongoReviewDataLoader(datastore));
     }
     

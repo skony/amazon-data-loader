@@ -28,9 +28,13 @@ public class JsonToDbLoader {
         int i = 1;
         dataLoader.beginTransaction();
         while (parser.nextToken() != null) {
+            System.out.println("e " + i);
             JsonNode node = objectMapper.readTree(parser);
+            if ((i++ % 100) != 0) {
+                continue;
+            }
             dataLoader.loadEntitiesToDb(node);
-            if ((i++ % 5000) == 0) {
+            if ((i++ % 10000) == 0) {
                 dataLoader.endTransaction();
                 dataLoader.beginTransaction();
             }
@@ -44,9 +48,13 @@ public class JsonToDbLoader {
         int i = 1;
         dataLoader.beginTransaction();
         while (parser.nextToken() != null) {
+            System.out.println("r " + i);
             JsonNode node = objectMapper.readTree(parser);
+            if ((i++ % 100) != 0) {
+                continue;
+            }
             dataLoader.loadRelationsToDb(node);
-            if ((i++ % 1000) == 0) {
+            if ((i++ % 10000) == 0) {
                 dataLoader.endTransaction();
                 dataLoader.beginTransaction();
             }
