@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import pl.put.fc.loader.control.mongo.MongoDataLoadInvoker;
+import pl.put.fc.loader.control.neo4j.Neo4JDataLoadInvoker;
 import pl.put.fc.loader.control.orient.OrientDataLoadInvoker;
 import pl.put.fc.loader.control.postgres.PostgresDataLoadInvoker;
 
@@ -14,11 +15,13 @@ public class Main {
     private static PostgresDataLoadInvoker postgresDataLoadInvoker = new PostgresDataLoadInvoker();
     private static MongoDataLoadInvoker mongoDataLoadInvoker = new MongoDataLoadInvoker();
     private static OrientDataLoadInvoker orientDataLoadInvoker = new OrientDataLoadInvoker();
+    private static Neo4JDataLoadInvoker neo4jDataLoadInvoker = new Neo4JDataLoadInvoker();
     
     public static void main(String[] args) throws JsonProcessingException, IOException {
         // postgresDataLoadInvoker.init();
         // mongoDataLoadInvoker.init();
-        orientDataLoadInvoker.init();
+        // orientDataLoadInvoker.init();
+        neo4jDataLoadInvoker.init();
         MetaFileFixer metaFileFixer = new MetaFileFixer();
         try {
             DATA_FILES.forEach(file -> proceedFile(metaFileFixer, file));
@@ -26,7 +29,8 @@ public class Main {
             e.printStackTrace();
         } finally {
             // postgresDataLoadInvoker.close();
-            orientDataLoadInvoker.close();
+            // orientDataLoadInvoker.close();
+            neo4jDataLoadInvoker.close();
         }
     }
     
@@ -37,10 +41,10 @@ public class Main {
             }
             // postgresDataLoadInvoker.invoke(file);
             // mongoDataLoadInvoker.invoke(file);
-            orientDataLoadInvoker.invoke(file);
+            // orientDataLoadInvoker.invoke(file);
+            neo4jDataLoadInvoker.invoke(file);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
-    
 }
